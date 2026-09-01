@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+
+<head>
+    <title>AngularJS Modules and Controllers</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script>
+
+        // Creating Module
+        var app = angular.module("studentApp", []);
+
+        // Creating Controller
+        app.controller("StudentController", function($scope) {
+
+            $scope.name = "Pranay";
+            $scope.course = "Computer Science";
+
+            $scope.students = [
+                {name: "Rahul", marks: 85},
+                {name: "Anjali", marks: 90},
+                {name: "Kiran", marks: 78}
+            ];
+
+        });
+
+    </script>
+
+</head>
+
+<body ng-controller="StudentController">
+
+<h2>Student Details</h2>
+
+<p>Name: {{name}}</p>
+<p>Course: {{course}}</p>
+
+<h3>Student List</h3>
+
+<ul>
+    <li ng-repeat="student in students">
+        {{student.name}} - {{student.marks}}
+    </li>
+</ul>
+
+</body>
+</html>
