@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="directiveApp">
+
+<head>
+
+<title>Custom Directive</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<script>
+
+var app =
+    angular.module("directiveApp", []);
+
+app.directive("studentInfo",
+function() {
+
+    return {
+
+        restrict: "E",
+
+        template:
+        "<div>" +
+        "<h3>Student Information</h3>" +
+        "<p>Name: {{name}}</p>" +
+        "<p>Course: {{course}}</p>" +
+        "</div>"
+
+    };
+
+});
+
+app.controller(
+"StudentController",
+function($scope) {
+
+    $scope.name = "Pranay";
+
+    $scope.course =
+        "Computer Science";
+
+});
+
+</script>
+
+</head>
+
+<body ng-controller="StudentController">
+
+<h2>AngularJS Custom Directive</h2>
+
+<student-info></student-info>
+
+</body>
+
+</html>
