@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+
+<head>
+
+<title>Node Angular App</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<script>
+
+var app =
+    angular.module("myApp", []);
+
+app.controller(
+"MainController",
+function($scope, $http) {
+
+    $scope.getMessage = function() {
+
+        $http.get("/api/message")
+
+        .then(function(response) {
+
+            $scope.message =
+                response.data.message;
+
+        });
+
+    };
+
+});
+
+</script>
+
+</head>
+
+<body ng-controller="MainController">
+
+<h2>Express + Node.js + AngularJS</h2>
+
+<button ng-click="getMessage()">
+    Get Message
+</button>
+
+<p>{{message}}</p>
+
+</body>
+
+</html>
