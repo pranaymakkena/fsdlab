@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="errorApp">
+
+<head>
+
+<title>AngularJS Error Handling</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<script>
+
+var app = angular.module("errorApp", []);
+
+app.controller("ErrorController",
+function($scope, $http) {
+
+    $scope.message = "";
+
+    $scope.loadData = function() {
+
+        $http.get("invalid-url.json")
+
+        .then(function(response) {
+
+            $scope.message =
+                "Data loaded successfully";
+
+        })
+
+        .catch(function(error) {
+
+            $scope.message =
+                "Error occurred while loading data";
+
+            $scope.status =
+                error.status;
+
+        });
+
+    };
+
+});
+
+</script>
+
+</head>
+
+<body ng-controller="ErrorController">
+
+<h2>AngularJS Error Handling</h2>
+
+<button ng-click="loadData()">
+    Load Data
+</button>
+
+<p>{{message}}</p>
+
+<p ng-if="status">
+    Error Code: {{status}}
+</p>
+
+</body>
+
+</html>
